@@ -8,6 +8,7 @@ import {
   FaLinkedin,
   FaInstagram,
   FaWhatsapp,
+  FaGlobe,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 
@@ -16,6 +17,8 @@ function Contact() {
     name: "",
     email: "",
     phone: "",
+    company: "",
+    subject: "",
     message: "",
   });
 
@@ -24,23 +27,29 @@ function Contact() {
 
     emailjs
       .send(
-        "service_xliq46v", // Replace with your Service ID
-        "template_obz111a", // Replace with your Template ID
+        "service_xliq46v",
+        "template_obz111a",
         {
           from_name: formData.name,
           from_email: formData.email,
           phone: formData.phone,
+          company: formData.company,
+          subject: formData.subject,
           message: formData.message,
         },
-        "aTkTyzXiQGJLiCMUk" // Replace with your Public Key
+        "aTkTyzXiQGJLiCMUk"
       )
       .then(() => {
-        alert("Message sent successfully!");
+        alert(
+          "Thank you for contacting Hire8 Global Staffing Services. Our team will get back to you within 24–48 business hours."
+        );
 
         setFormData({
           name: "",
           email: "",
           phone: "",
+          company: "",
+          subject: "",
           message: "",
         });
       })
@@ -54,15 +63,19 @@ function Contact() {
     <>
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="pt-32 pb-20 bg-gradient-to-r from-blue-900 via-blue-700 to-orange-500 text-white text-center">
-        <h1 className="text-5xl md:text-7xl font-bold">
-          Contact Us
-        </h1>
+        <div className="max-w-4xl mx-auto px-6">
+          <h1 className="text-5xl md:text-7xl font-bold">
+            Contact Hire8 Global
+          </h1>
 
-        <p className="mt-6 text-lg max-w-3xl mx-auto">
-          We'd love to hear from you. Get in touch with our team.
-        </p>
+          <p className="mt-6 text-lg">
+            Whether you're looking to hire exceptional talent,
+            explore career opportunities, or learn more about our
+            recruitment solutions, our team is here to help.
+          </p>
+        </div>
       </section>
 
       {/* Contact Content */}
@@ -78,11 +91,14 @@ function Contact() {
 
             <div className="space-y-6">
 
+              {/* Phone */}
               <div className="bg-white p-6 rounded-2xl shadow">
                 <div className="flex items-center gap-4">
                   <FaPhoneAlt className="text-orange-500 text-2xl" />
+
                   <div>
                     <h3 className="font-bold">Phone</h3>
+
                     <a
                       href="tel:+919363527858"
                       className="text-gray-600 hover:text-orange-500"
@@ -93,11 +109,14 @@ function Contact() {
                 </div>
               </div>
 
+              {/* Email */}
               <div className="bg-white p-6 rounded-2xl shadow">
                 <div className="flex items-center gap-4">
                   <FaEnvelope className="text-orange-500 text-2xl" />
+
                   <div>
                     <h3 className="font-bold">Email</h3>
+
                     <a
                       href="mailto:hire8global@gmail.com"
                       className="text-gray-600 hover:text-orange-500"
@@ -108,9 +127,31 @@ function Contact() {
                 </div>
               </div>
 
+              {/* Website */}
+              <div className="bg-white p-6 rounded-2xl shadow">
+                <div className="flex items-center gap-4">
+                  <FaGlobe className="text-orange-500 text-2xl" />
+
+                  <div>
+                    <h3 className="font-bold">Website</h3>
+
+                    <a
+                      href="https://hire8-global-website-thny.vercel.app/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-gray-600 hover:text-orange-500"
+                    >
+                      Visit Hire8 Global
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Location */}
               <div className="bg-white p-6 rounded-2xl shadow">
                 <div className="flex items-center gap-4">
                   <FaMapMarkerAlt className="text-orange-500 text-2xl" />
+
                   <div>
                     <h3 className="font-bold">Location</h3>
                     <p>Chennai, Tamil Nadu, India</p>
@@ -118,7 +159,9 @@ function Contact() {
                 </div>
               </div>
 
+              {/* Social */}
               <div className="bg-white p-6 rounded-2xl shadow">
+
                 <h3 className="font-bold mb-4">
                   Follow Us
                 </h3>
@@ -153,6 +196,7 @@ function Contact() {
                   </a>
 
                 </div>
+
               </div>
 
             </div>
@@ -210,6 +254,33 @@ function Contact() {
                 required
               />
 
+              <input
+                type="text"
+                placeholder="Company Name"
+                value={formData.company}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    company: e.target.value,
+                  })
+                }
+                className="w-full border rounded-xl p-4"
+              />
+
+              <input
+                type="text"
+                placeholder="Subject"
+                value={formData.subject}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    subject: e.target.value,
+                  })
+                }
+                className="w-full border rounded-xl p-4"
+                required
+              />
+
               <textarea
                 rows="5"
                 placeholder="Your Message"
@@ -222,7 +293,7 @@ function Contact() {
                 }
                 className="w-full border rounded-xl p-4"
                 required
-              ></textarea>
+              />
 
               <button
                 type="submit"
@@ -231,7 +302,66 @@ function Contact() {
                 Send Message
               </button>
 
+              <p className="text-center text-sm text-gray-500">
+                Our team typically responds within 24–48 business hours.
+              </p>
+
             </form>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* Why Contact Hire8 */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+
+          <h2 className="text-4xl font-bold text-center text-blue-800 mb-12">
+            Why Contact Hire8 Global?
+          </h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <div className="bg-slate-50 p-8 rounded-3xl shadow">
+              <h3 className="font-bold text-blue-800 mb-3">
+                Talent Acquisition
+              </h3>
+
+              <p className="text-gray-600">
+                Find qualified professionals for your business needs.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 p-8 rounded-3xl shadow">
+              <h3 className="font-bold text-blue-800 mb-3">
+                Career Opportunities
+              </h3>
+
+              <p className="text-gray-600">
+                Explore exciting opportunities across multiple industries.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 p-8 rounded-3xl shadow">
+              <h3 className="font-bold text-blue-800 mb-3">
+                Recruitment Consulting
+              </h3>
+
+              <p className="text-gray-600">
+                Expert guidance on hiring and workforce planning.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 p-8 rounded-3xl shadow">
+              <h3 className="font-bold text-blue-800 mb-3">
+                Dedicated Support
+              </h3>
+
+              <p className="text-gray-600">
+                Professional support from inquiry to successful placement.
+              </p>
+            </div>
 
           </div>
 
